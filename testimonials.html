@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wealthapp Testimonials</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-blue: #14225a;
+      --brand-gold: #b7ba4b;
+      --brand-light: #f7f7f7;
+    }
+    body {
+      /* Animated gradient background */
+      min-height: 100vh;
+      background: linear-gradient(120deg, #e7f0fa 0%, #f8f6e5 100%);
+      background-size: 200% 200%;
+      animation: gradientMove 10s ease-in-out infinite alternate;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      color: var(--brand-blue);
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    .testimonials-section {
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .testimonials-section h1 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #14225a; /* Brand blue */
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .testimonial-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .testimonial-box {
+      background: var(--brand-light);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #14225a22;
+      padding: 32px 32px 24px 32px;
+      max-width: 420px;
+      flex: 1 1 380px;
+      text-align: left;
+      position: relative;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .testimonial-box:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 12px 32px #2186d422;
+      border: 1.5px solid var(--brand-gold);
+    }
+    .testimonial-text {
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      color: var(--brand-blue);
+    }
+    .testimonial-client {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--brand-blue);
+      margin-bottom: 4px;
+    }
+    .testimonial-designation {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #42507a;
+      margin-bottom: 4px;
+    }
+    .testimonial-location {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--brand-gold);
+      margin-bottom: 0;
+    }
+    @media (max-width: 700px) {
+      .testimonial-grid {
+        gap: 24px;
+      }
+      .testimonial-box {
+        padding: 24px 24px 20px 24px;
+      }
+      .testimonial-text {
+        font-size: 1.05rem;
+      }
+      .testimonial-client {
+        font-size: 1rem;
+      }
+      .testimonial-designation,
+      .testimonial-location {
+        font-size: 0.9rem;
+      }
+    }
+    .navbar {
+      width: 100%;
+      background: #0a1756;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 54px;
+    }
+    /* Dropdown menu styles */
+.navbar-menu .dropdown {
+  position: relative;
+}
+.navbar-menu .dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #0a1756;
+  min-width: 260px;
+  border-radius: 0 0 12px 12px;
+  padding: 10px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  z-index: 100;
+  border: 3px solid #7b5be6; /* purple border */
+  border-top: none;
+}
+.navbar-menu .dropdown:hover > .dropdown-menu,
+.navbar-menu .dropdown:focus-within > .dropdown-menu {
+  display: block;
+}
+.dropdown-menu li {
+  position: relative;
+}
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  color: #fff;
+  padding: 7px 28px 7px 18px;
+  font-size: 1.08rem;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.dropdown-menu a:hover,
+.dropdown-menu a:focus,
+.submenu a:hover,
+.submenu a:focus {
+  color: #b7ba4b;
+  font-weight: 600;
+  background: none;
+}
+.dropdown-menu .submenu-parent > a {
+  font-weight: 400;
+  color: #fff;
+  padding-right: 40px;
+  position: relative;
+}
+.dropdown-menu .submenu-parent > a:after {
+  content: "›";
+  position: absolute;
+  right: 22px;
+  color: #fff;
+  font-size: 1.1em;
+}
+
+
+.dropdown-menu .submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: #0a1756;
+  min-width: 220px;
+  border-radius: 0 12px 12px 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  z-index: 200;
+  padding: 0;
+  border: 3px solid #7b5be6; /* purple border */
+  border-left: none;
+}
+.dropdown-menu .submenu-parent:hover > .submenu,
+.dropdown-menu .submenu-parent:focus-within > .submenu {
+  display: block;
+}
+.dropdown-menu .submenu li {
+  padding: 0;
+}
+
+/* Highlight parent menu when dropdown/submenu is open */
+.navbar-menu .dropdown:hover > a,
+.navbar-menu .dropdown:focus-within > a,
+.dropdown-menu .submenu-parent:hover > a,
+.dropdown-menu .submenu-parent:focus-within > a {
+  color: #b7ba4b;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .navbar-menu .dropdown-menu,
+  .dropdown-menu .submenu {
+    position: static;
+    box-shadow: none;
+    min-width: 100%;
+    border-radius: 0;
+    border: none;
+  }
+}
+
+    /* Dropdown menu styles */
+.navbar-menu .dropdown {
+  position: relative;
+}
+.navbar-menu .dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #0a1756;
+  min-width: 250px;
+  border-radius: 0 0 12px 12px;
+  padding: 14px 0 14px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  z-index: 100;
+}
+.navbar-menu .dropdown:hover > .dropdown-menu,
+.navbar-menu .dropdown:focus-within > .dropdown-menu {
+  display: block;
+}
+.dropdown-menu li {
+  position: relative;
+}
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  color: #fff;
+  padding: 7px 28px 7px 18px;
+  font-size: 1.08rem;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.dropdown-menu a:hover,
+.dropdown-menu a:focus,
+.submenu a:hover,
+.submenu a:focus {
+  color: #b7ba4b;
+  font-weight: 600;
+  background: none;
+}
+.dropdown-menu .submenu-parent > a {
+  font-weight: 400;
+  color: #fff;
+  padding-right: 40px;
+  position: relative;
+}
+.dropdown-menu .submenu-parent > a:after {
+  content: "›";
+  position: absolute;
+  right: 22px;
+  color: #fff;
+  font-size: 1.1em;
+}
+.dropdown-menu .submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: #0a1756;
+  min-width: 220px;
+  border-radius: 0 12px 12px 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  z-index: 200;
+  padding: 0;
+}
+.dropdown-menu .submenu-parent:hover > .submenu,
+.dropdown-menu .submenu-parent:focus-within > .submenu {
+  display: block;
+}
+.dropdown-menu .submenu li {
+  padding: 0;
+}
+
+/* Highlight parent menu when dropdown/submenu is open */
+.navbar-menu .dropdown:hover > a,
+.navbar-menu .dropdown:focus-within > a,
+.dropdown-menu .submenu-parent:hover > a,
+.dropdown-menu .submenu-parent:focus-within > a {
+  color: #b7ba4b;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .navbar-menu .dropdown-menu,
+  .dropdown-menu .submenu {
+    position: static;
+    box-shadow: none;
+    min-width: 100%;
+    border-radius: 0;
+  }
+}
+
+    .navbar-menu {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 18px;
+    }
+    .navbar-menu li {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-menu a {
+      display: block;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.15rem;
+      text-decoration: none;
+      padding: 10px 10px;
+      border-radius: 3px;
+      font-weight: 400;
+      transition: color 0.2s, background 0.2s;
+      position: relative;
+    }
+    .navbar-menu a .arrow {
+      font-size: 0.8em;
+      margin-left: 3px;
+    }
+    .navbar-menu a:hover,
+    .navbar-menu a:focus {
+      color: #b7ba4b;
+      font-weight: 600;
+    }
+    @media (max-width: 1100px) {
+      .navbar-menu {
+        gap: 10px;
+      }
+      .navbar-menu a {
+        font-size: 1rem;
+        padding: 8px 8px;
+      }
+    }
+    .logo-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      padding: 32px 0 16px 0; /* slightly more padding for balance */
+    }
+    
+    .logo-img {
+      height: 150px; /* increase from 70px to 110px */
+      max-width: 250px; /* keep it responsive */
+      width: auto;
+      margin-bottom: 8px;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #fff;
+      color: #14225a;
+    }
+  </style>
+  <script>
+    // Optional: Add interactive effect to background on mouse move
+    document.addEventListener('mousemove', function(e) {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      document.body.style.background = `linear-gradient(120deg, #e7f0fa ${(x*100).toFixed(0)}%, #f8f6e5 ${(y*100).toFixed(0)}%)`;
+    });
+    // Remove the above script if you want only a static animated gradient.
+  </script>
+</head>
+<body>
+</head>
+<header class="sticky-header" id="stickyHeader">
+  <img src="Images/logo2.jpeg" alt="WealthApp Logo" class="logo-img" id="mainLogo">
+  <nav class="navbar">
+    <ul class="navbar-menu">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="">About <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="aboutustester.html">Our Company</a></li>
+          <li><a href="#">Brochure</a></li>
+          <li><a href="testimonials.html">Client Testimonials</a></li>
+          <li class="submenu-parent">
+            <a href="#">Gallery</a>
+            <ul class="submenu">
+              <li><a href="#">Awards</a></li>
+              <li><a href="#">Team Pics</a></li>
+              <li><a href="#">Certificates</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="services.html">Services <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="services.html">Wealth Management</a></li>
+          <li><a href="services.html">Estate and Trust Planning</a></li>
+          <li><a href="services.html">Dedicated NRI Cell</a></li>
+          <li><a href="services.html">Portfolio Management Services</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="services.html">Products <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="products.html">Mutual Funds</a></li>
+          <li><a href="products.html">Bonds</a></li>
+          <li><a href="products.html">Real Estate</a></li>
+          <li><a href="products.html">Alternative Investment Funds</a></li>
+          <li><a href="products.html">Structured Products</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Holiday Adda</a></li>
+      <li class="dropdown">
+        <a href="#">Investor Zone <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li class="submenu-parent">
+            <a href="#">Tools</a>
+            <ul class="submenu">
+              <li><a href="https://wealthappdistributors.com/schemePerformance.php">Mutual Fund Performance</a></li>
+              <li><a href="https://wealthappdistributors.com/pastSipPerformance.php">Past SIP Performance</a></li>
+              <li><a href="https://wealthappdistributors.com/fundComparison.php">Fund Comparison</a></li>
+              <li><a href="https://wealthappdistributors.com/dividendAnnounced.php">Dividend Announced</a></li>
+              <li><a href="https://wealthappdistributors.com/downloadMFform.php">Download MF Forms</a></li>
+            </ul>
+          </li>
+          <li><a href="#">KYC</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Login</a></li>
+      <li><a href="contactus.html">Contact</a></li>
+    </ul>
+  </nav>
+    </ul>
+</header>
+
+  
+  <section class="testimonials-section">
+    <h1>What Our Clients Say</h1>
+    <div class="testimonial-grid">
+      <!-- Testimonial 1 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp is the best organization if you want to grow your wealth.</div>
+        <div class="testimonial-client">Mr. Subrata Dutta</div>
+        <div class="testimonial-designation">Vice President - Bengal Business Council / Managing Director - George Telegraph</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 2 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp is doing such a fantastic job. One can easily navigate through the portal. That brings a lot of confidence among Wealthapp customers because it's money.</div>
+        <div class="testimonial-client">Mrs. and Mr. Sucharita and Abhijit Sengupta</div>
+        <div class="testimonial-designation">Retired from Nestle, Business Consultant</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 3 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I would love to be a permanent member (client) of the Wealthapp family.</div>
+        <div class="testimonial-client">Mrs. and Mr. Sangeeta and Deepak Shrivastava</div>
+        <div class="testimonial-designation">Retired from Nestle, Faculty at BIBS</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 4 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp’s app is very good. It's very transparent.</div>
+        <div class="testimonial-client">Mr. Tushar Suraiya</div>
+        <div class="testimonial-designation">Partner at Khimjee Hunsraj</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 5 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">In Wealthapp, everything is done paper-free.</div>
+        <div class="testimonial-client">Mr. Vivek Suraiya</div>
+        <div class="testimonial-designation">Partner at Khimjee Hunsraj</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 6 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp is giving a lot of satisfaction to their clients.</div>
+        <div class="testimonial-client">Mrs. and Mr. Mallika and Chandan Ghosh</div>
+        <div class="testimonial-designation">Retired from Nestle</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 7 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Nowadays, I find myself as a member of the extended Wealthapp family.</div>
+        <div class="testimonial-client">Mr. Uttam Ganguly</div>
+        <div class="testimonial-designation">Construction Business</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 8 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp has a wonderful team. I trust Wealthapp and I feel this credibility is essential if I need my fund to grow.</div>
+        <div class="testimonial-client">Ms. Soma Dutta</div>
+        <div class="testimonial-designation">Communication Consultant – Par Ferro Coatings</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 9 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I am very satisfied with the returns. Advice from Wealthapp has been priceless.</div>
+        <div class="testimonial-client">Mr. Neelkanth Chatterjee</div>
+        <div class="testimonial-designation">Business Consultant, BFSI Sector</div>
+        <div class="testimonial-location">Mumbai</div>
+      </div>
+      <!-- Testimonial 10 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp is really excellent. Great.</div>
+        <div class="testimonial-client">Mr. Devasis Ghosh</div>
+        <div class="testimonial-designation">Founder - Woodsmith</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 11 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp has a very big and a very good team.</div>
+        <div class="testimonial-client">Mr. Uday Ganguly</div>
+        <div class="testimonial-designation">Retired From Selvel</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 12 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I am so confident with Wealthapp, I keep on coming back again and again.</div>
+        <div class="testimonial-client">Mr. Prabal Guha</div>
+        <div class="testimonial-designation">Retired from Himalaya Drug Company</div>
+        <div class="testimonial-location">Bengaluru</div>
+      </div>
+      <!-- Testimonial 13 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">My experience with Wealthapp has been good.</div>
+        <div class="testimonial-client">Mr. Vivek Shrivastava</div>
+        <div class="testimonial-designation">Astute Banker & Lawyer</div>
+        <div class="testimonial-location">Delhi NCR</div>
+      </div>
+      <!-- Testimonial 14 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">With Wealthapp, you feel as if you are a part of a family.</div>
+        <div class="testimonial-client">Ms. Chandni Talwar</div>
+        <div class="testimonial-designation">IT Professional</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 15 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I am completely dependent on him (Soumyajit Ghosh – Founder, Wealthapp) and closed my eyes. And that has been very relaxing.</div>
+        <div class="testimonial-client">Mr. Subesh Ray</div>
+        <div class="testimonial-designation">Director - Sotheby’s International Realty</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 16 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I really appreciate Wealthapp. The way Wealthapp deals and the way they advise. Wealthapp team is very cooperative.</div>
+        <div class="testimonial-client">Mr. Sekhar Basu</div>
+        <div class="testimonial-designation">Retired from DLF</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 17 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I find the Wealthapp team very genuine. The Wealthapp people are quite genuine in what they say. And the advice Wealthapp gives is right.</div>
+        <div class="testimonial-client">Mr. Balaji Vittal</div>
+        <div class="testimonial-designation">Author, IT and Lead Manager at Concentrix</div>
+        <div class="testimonial-location">Hyderabad</div>
+      </div>
+      <!-- Testimonial 18 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Thanks a lot, to Wealthapp.</div>
+        <div class="testimonial-client">Col. Harish Joshi</div>
+        <div class="testimonial-designation">Retired from Indian Army and UN</div>
+        <div class="testimonial-location">Bengaluru</div>
+      </div>
+      <!-- Testimonial 19 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">With Wealthapp, I see more trust and understanding of my capacity and helping me grow that.</div>
+        <div class="testimonial-client">Ms. Gargi Mukherjee</div>
+        <div class="testimonial-designation">Business Executive at Plaeto</div>
+        <div class="testimonial-location">Bengaluru</div>
+      </div>
+      <!-- Testimonial 20 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp is a very value-based company.</div>
+        <div class="testimonial-client">Mr. Deepak Naskar</div>
+        <div class="testimonial-designation">Ex Banker, Management Consultant</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 21 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp has given me some good advice on where to invest and how to invest.</div>
+        <div class="testimonial-client">Mr. John Noronha</div>
+        <div class="testimonial-designation">Insurance Consultant</div>
+        <div class="testimonial-location">Bengaluru</div>
+      </div>
+      <!-- Testimonial 22 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">In terms of return, what we expected, Wealthapp is delivering more than that.</div>
+        <div class="testimonial-client">Mr. Murugesan</div>
+        <div class="testimonial-designation">Chemical Industry Expert</div>
+        <div class="testimonial-location">Bengaluru</div>
+      </div>
+      <!-- Testimonial 23 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">It's a great decision we made, when we committed to Wealthapp.</div>
+        <div class="testimonial-client">Ms. Debarati Guha</div>
+        <div class="testimonial-designation">HR – Ministry of Defence</div>
+        <div class="testimonial-location">UK</div>
+      </div>
+      <!-- Testimonial 24 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I am very happy to be associated with Wealthapp for the last 4-5 years.</div>
+        <div class="testimonial-client">Mr. Srinath</div>
+        <div class="testimonial-designation">Worked in Nestle</div>
+        <div class="testimonial-location">Bengaluru</div>
+      </div>
+      <!-- Testimonial 25 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I trust him (Soumyajit Ghosh – Founder, Wealthapp) completely with my money.</div>
+        <div class="testimonial-client">Dr. Anit Mukherjee</div>
+        <div class="testimonial-designation">Working in Observer Research Foundation</div>
+        <div class="testimonial-location">Washington D.C</div>
+      </div>
+      <!-- Testimonial 26 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I knew the art of spending money, but nobody taught me ‘The Art of Money’. That's where I got connected with Wealthapp.</div>
+        <div class="testimonial-client">Dr. K P Sanyal</div>
+        <div class="testimonial-designation">Orthopaedic Surgeon</div>
+        <div class="testimonial-location">Gurugram</div>
+      </div>
+      <!-- Testimonial 27 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">We are absolutely stress-free as we know that our money is in the safe hands of Wealthapp.</div>
+        <div class="testimonial-client">Mrs. and Mr. Susmita and Amit Gaine</div>
+        <div class="testimonial-designation">Teacher & FMCG Professionals</div>
+        <div class="testimonial-location">Mumbai</div>
+      </div>
+      <!-- Testimonial 28 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Everything is going well with Wealthapp.</div>
+        <div class="testimonial-client">Dr. Krishnakali Chatterjee</div>
+        <div class="testimonial-designation">Co-Director, Whitezone Dental Clinic</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 29 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I have been regularly increasing my investments through Wealthapp, in a diversified portfolio.</div>
+        <div class="testimonial-client">Mr. Pranab Chand Baral</div>
+        <div class="testimonial-designation">Astute International Banker</div>
+        <div class="testimonial-location">Kuwait</div>
+      </div>
+      <!-- Testimonial 30 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">The advice from Wealthapp has always been very forthcoming.</div>
+        <div class="testimonial-client">Ms. Vanita Tandon</div>
+        <div class="testimonial-designation">Owner – Brown’s Cafe</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 31 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I have always been a big fan of his (Soumyajit Ghosh – Founder, Wealthapp) investment philosophies, so Wealthapp for me is family.</div>
+        <div class="testimonial-client">Mr. Akash Gupta</div>
+        <div class="testimonial-designation">Astute Banker & IT Professional</div>
+        <div class="testimonial-location">Gurugram</div>
+      </div>
+      <!-- Testimonial 32 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp is just like a family now. It's yaari, it's dosti.</div>
+        <div class="testimonial-client">Mr. Somnath Mukherjee</div>
+        <div class="testimonial-designation">Director - Endress+Hauser</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 33 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">If someone wants financial guidance, I recommend Wealthapp. If you want to achieve financial benefits and become financially secure, transfer your worries to Wealthapp and enjoy your time at leisure.</div>
+        <div class="testimonial-client">Mr. Dulal Dey</div>
+        <div class="testimonial-designation">Sports Journalist, Movie Producer</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 34 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I was not a pro with my financials. Wealthapp took over it and made it easy for me to get my post-retirement life secured.</div>
+        <div class="testimonial-client">Mr. Saugata Chatterjee</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 35 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">In Wealthapp, the team and every staff member are very good. They know their job and are very well behaved, and their time sense is also great.</div>
+        <div class="testimonial-client">Mr. Tapan Kumar Guha</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 36 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp is a growing company and also very supportive.</div>
+        <div class="testimonial-client">Mr. Amitava Sengupta</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 37 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp team is very efficient. They are young, they are always enthusiastic and whenever I approach them for some problem, they are very supportive about it.</div>
+        <div class="testimonial-client">Ms. Sreela Sengupta</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 38 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp always helps me in taking decisions (financial). They also help me choose which one is good for me.</div>
+        <div class="testimonial-client">Ms. Rupa Basu</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 39 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I am very confident that my investments are in safe hands of Wealthapp and they meticulously made me understand the benefits of long-term investment.</div>
+        <div class="testimonial-client">Mr. Sujit Kumar Ghosh</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 40 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp team is very supportive and always helpful. I am very happy with Wealthapp.</div>
+        <div class="testimonial-client">Mr. Kaushik Mukherjee</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 41 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp is a very nice company. They always help with the right decision (financial).</div>
+        <div class="testimonial-client">Ms. Rimi Mukherjee</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 42 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">The app that is provided by Wealthapp is very useful. Their management style is also great.</div>
+        <div class="testimonial-client">Mr. Biman Chatterjee</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 43 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">The app keeps updating always. My journey with Wealthapp is great.</div>
+        <div class="testimonial-client">Ms. Gouri Chatterjee</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 44 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp is always a guide to me in any situation. Wealthapp Team is very good and always interacts with us.</div>
+        <div class="testimonial-client">Mr. Bibhuti Sen</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 45 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">As Wealthapp is growing, we also keep on growing.</div>
+        <div class="testimonial-client">Ms. Oindrila Sen</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 46 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">I appreciate Wealthapp's guidance in managing my finances effectively and safely. I am also impressed by the convenience and support offered by the Wealthapp team.</div>
+        <div class="testimonial-client">Dr. Prabhjeet Singh Sethi</div>
+        <div class="testimonial-designation">Dentist and Founder at Dontia Care</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 47 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp is a very trustworthy company, transparent about their work, and also serves top-level service.</div>
+        <div class="testimonial-client">Mr. Sanjoy Ray Chowdhury</div>
+        <div class="testimonial-designation">Ex-Banker</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 48 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp is an organized company, and this company is also a one-stop solution for any kind of investment.</div>
+        <div class="testimonial-client">Dr. Suddhasattwa Sen</div>
+        <div class="testimonial-designation">Doctor</div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+      <!-- Testimonial 49 -->
+      <div class="testimonial-box">
+        <div class="testimonial-text">Wealthapp team always assesses our needs first and then manages our investment. Wealthapp is always maintaining their strategy according to my needs. Wealthapp team is a fabulous team, and they are always supportive.</div>
+        <div class="testimonial-client">Mr. Chandan Ghosh</div>
+        <div class="testimonial-designation"></div>
+        <div class="testimonial-location">Kolkata</div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

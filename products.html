@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WealthApp Products - Investment Solutions</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
+ <style>
+  body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #f7f7f7;
+    color: #14225a;
+    line-height: 1.6;
+  }
+
+  .sticky-header {
+    width: 100%;
+    background: #0a1756;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    position: relative;
+    z-index: 1001;
+    box-shadow: none;
+    transition: box-shadow 0.22s, padding 0.22s, background 0.22s;
+    min-height: 90px;
+  }
+
+  .sticky-header.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #0a1756;
+    box-shadow: 0 2px 12px rgba(20,34,90,0.08);
+    min-height: 54px;
+  }
+
+  .logo-img {
+    height: 110px;
+    max-width: 260px;
+    width: auto;
+    margin-left: 36px;
+    margin-right: 18px;
+    margin-top: 0;
+    margin-bottom: 0;
+    background: transparent;
+    box-shadow: 0 4px 16px rgba(20,34,90,0.08);
+    transition: height 0.3s cubic-bezier(.4,2,.6,1), margin 0.3s cubic-bezier(.4,2,.6,1);
+  }
+
+  .sticky-header.scrolled .logo-img {
+    height: 54px;
+    margin-left: 12px;
+    margin-right: 12px;
+    box-shadow: 0 1px 4px rgba(20,34,90,0.10);
+  }
+
+  .navbar {
+    flex: 1;
+    background: transparent;
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-menu {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 18px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .navbar-menu li {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-menu a {
+    display: block;
+    color: #fff;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.15rem;
+    text-decoration: none;
+    padding: 10px 10px;
+    border-radius: 3px;
+    font-weight: 400;
+    transition: color 0.2s, background 0.2s;
+    position: relative;
+  }
+
+  .navbar-menu a .arrow {
+    font-size: 0.8em;
+    margin-left: 3px;
+  }
+
+  .navbar-menu a:hover,
+  .navbar-menu a:focus {
+    color: #b7ba4b;
+    font-weight: 600;
+  }
+
+  .navbar-menu .dropdown {
+    position: relative;
+  }
+
+  .navbar-menu .dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #0a1756;
+    min-width: 250px;
+    border-radius: 0 0 12px 12px;
+    padding: 14px 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    z-index: 100;
+    border: 3px solid #7b5be6;
+    border-top: none;
+  }
+
+  .navbar-menu .dropdown:hover > .dropdown-menu,
+  .navbar-menu .dropdown:focus-within > .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    color: #fff;
+    padding: 7px 28px 7px 18px;
+    font-size: 1.08rem;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s, background 0.2s;
+    border-radius: 0;
+    white-space: nowrap;
+  }
+
+  .dropdown-menu a:hover,
+  .dropdown-menu a:focus {
+    color: #b7ba4b;
+    font-weight: 600;
+    background: none;
+  }
+
+  .navbar-menu .dropdown:hover > a,
+  .navbar-menu .dropdown:focus-within > a {
+    color: #b7ba4b;
+    font-weight: 600;
+  }
+
+  .products-hero {
+    background: linear-gradient(135deg, #14225a 0%, #2186d4 100%);
+    color: #fff;
+    text-align: center;
+    padding: 120px 20px 80px 20px;
+    margin-top: 0;
+  }
+
+  .products-hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  .products-hero p {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.95;
+  }
+
+  .products-nav {
+    background: #fff;
+    padding: 30px 0;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(20,34,90,0.08);
+    position: sticky;
+    top: 54px;
+    z-index: 500;
+  }
+
+  .products-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .products-nav-list a {
+    color: #14225a;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 12px 24px;
+    border-radius: 25px;
+    border: 2px solid #b7ba4b;
+    transition: all 0.3s;
+  }
+
+  .products-nav-list a:hover,
+  .products-nav-list a.active {
+    background: #b7ba4b;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(183,186,75,0.3);
+  }
+
+  .product-section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .product-section:nth-child(even) {
+    background: #fff;
+  }
+
+  .product-section h2 {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  padding: 80px 20px;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* ← Add this */
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(20,34,90,0.12);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+
+  .product-section h2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(20, 34, 90, 0.7);
+    z-index: 1;
+    border-radius: 16px;
+  }
+
+  .product-section h2::after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #b7ba4b 0%, #2186d4 100%);
+    display: block;
+    margin: 20px auto;
+    border-radius: 2px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .product-section h2 span {
+    position: relative;
+    z-index: 2;
+  }
+
+  .product-content {
+    background: #fff;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 8px 32px rgba(20,34,90,0.08);
+    border: 2px solid #f7f7f7;
+    transition: all 0.3s;
+  }
+
+  .product-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(20,34,90,0.12);
+    border-color: #b7ba4b;
+  }
+
+  .product-content h3 {
+    font-size: 1.6rem;
+    color: #2186d4;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .product-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .product-benefits {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+  }
+
+  .product-benefits h4 {
+    color: #14225a;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+
+  .product-benefits ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .product-benefits li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+  }
+
+  .product-benefits li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #b7ba4b;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .product-cta {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #b7ba4b 0%, #2186d4 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(183,186,75,0.3);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(183,186,75,0.4);
+  }
+
+  @media (max-width: 768px) {
+    .products-hero h1 {
+      font-size: 2.2rem;
+    }
+
+    .products-hero p {
+      font-size: 1.1rem;
+    }
+
+    .products-nav-list {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .product-content {
+      padding: 30px 25px;
+    }
+
+    .product-section {
+      padding: 50px 15px;
+    }
+
+    .product-section h2 {
+      padding: 60px 20px;
+      font-size: 2rem;
+    }
+
+    .navbar-menu {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .navbar-menu {
+      gap: 10px;
+    }
+
+    .navbar-menu a {
+      font-size: 1rem;
+      padding: 8px 8px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .logo-img {
+      height: 70px;
+      margin-left: 12px;
+      margin-top: -30px;
+    }
+
+    .sticky-header.scrolled .logo-img {
+      height: 38px;
+      margin-left: 6px;
+      margin-top: 2px;
+    }
+  }
+  </style>
+</head>
+<header class="sticky-header" id="stickyHeader">
+  <img src="Images/logo2.jpeg" alt="WealthApp Logo" class="logo-img" id="mainLogo">
+  <nav class="navbar">
+    <ul class="navbar-menu">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="">About <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="aboutustester.html">Our Company</a></li>
+          <li><a href="#">Brochure</a></li>
+          <li><a href="testimonials.html">Client Testimonials</a></li>
+          <li class="submenu-parent">
+            <a href="#">Gallery</a>
+            <ul class="submenu">
+              <li><a href="#">Awards</a></li>
+              <li><a href="#">Team Pics</a></li>
+              <li><a href="#">Certificates</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="services.html">Services <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="services.html">Wealth Management</a></li>
+          <li><a href="services.html">Estate and Trust Planning</a></li>
+          <li><a href="services.html">Dedicated NRI Cell</a></li>
+          <li><a href="services.html">Portfolio Management Services</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="products.html">Products <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="products.html">Mutual Funds</a></li>
+          <li><a href="products.html">Bonds</a></li>
+          <li><a href="products.html">Real Estate</a></li>
+          <li><a href="products.html">Alternative Investment Funds</a></li>
+          <li><a href="products.html">Structured Products</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Holiday Adda</a></li>
+      <li class="dropdown">
+        <a href="#">Investor Zone <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li class="submenu-parent">
+            <a href="#">Tools</a>
+            <ul class="submenu">
+              <li><a href="https://wealthappdistributors.com/schemePerformance.php">Mutual Fund Performance</a></li>
+              <li><a href="https://wealthappdistributors.com/pastSipPerformance.php">Past SIP Performance</a></li>
+              <li><a href="https://wealthappdistributors.com/fundComparison.php">Fund Comparison</a></li>
+              <li><a href="https://wealthappdistributors.com/dividendAnnounced.php">Dividend Announced</a></li>
+              <li><a href="https://wealthappdistributors.com/downloadMFform.php">Download MF Forms</a></li>
+            </ul>
+          </li>
+          <li><a href="#">KYC</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Login</a></li>
+      <li><a href="contactus.html">Contact</a></li>
+    </ul>
+  </nav>
+    </ul>
+</header>
+
+
+  <!-- Hero Section -->
+  <section class="products-hero">
+    <h1>Our Products</h1>
+    <p>Explore a range of investment solutions designed to help you build, preserve, and grow your wealth with confidence.</p>
+  </section>
+
+  <!-- Products Navigation -->
+  <nav class="products-nav">
+    <ul class="products-nav-list">
+      <li><a href="#mutual-funds">Mutual Funds</a></li>
+      <li><a href="#bonds">Bonds</a></li>
+      <li><a href="#real-estate">Real Estate</a></li>
+      <li><a href="#aif">Alternative Investment Funds</a></li>
+      <li><a href="#structured-products">Structured Products</a></li>
+    </ul>
+  </nav>
+
+  <!-- Mutual Funds Section -->
+  <section id="mutual-funds" class="product-section">
+    <h2 style="background-image: url('https://zenithfinserve.in/wp-content/uploads/2025/01/5-Jan-2023-XX-Things-You-Need-To-Know-About-Mutual-Fund-NAV-12.png')">
+      <span>Mutual Funds</span>
+    </h2>
+    <div class="product-content">
+      <h3>Accessible, Diversified Investment Vehicles</h3>
+      <p>A mutual fund is simply a financial intermediary that allows a group of investors to pool their money together with a predetermined investment objective. Mutual funds have become extremely popular over the last 20 years. In fact, to many people, investing means buying mutual funds. After all, it's common knowledge that investing in mutual funds is (or at least should be) better than simply letting your cash waste away in a savings account.</p>
+      <p><strong>Definition:</strong> A mutual fund is nothing more than a collection of stocks and/or bonds. You can make money from a mutual fund in three ways:</p>
+      <div class="product-benefits">
+        <ul>
+          <li>Income is earned from dividends on stocks and interest on bonds. A fund pays out nearly all income it receives over the year to fund owners in the form of a distribution.</li>
+          <li>If the fund sells securities that have increased in price, the fund has a capital gain. Most funds also pass on these gains to investors in a distribution.</li>
+          <li>If fund holdings increase in price but are not sold by the fund manager, the fund's shares increase in price. You can then sell your mutual fund shares for a profit.</li>
+        </ul>
+      </div>
+      <h3>Advantages of Mutual Funds</h3>
+      <div class="product-benefits">
+        <ul>
+          <li><strong>Professional Management:</strong> A mutual fund is a relatively inexpensive way for a small investor to get a full-time manager to make and monitor investments.</li>
+          <li><strong>Diversification:</strong> By owning shares in a mutual fund instead of owning individual stocks or bonds, your risk is spread out.</li>
+          <li><strong>Economies of Scale:</strong> Because a mutual fund buys and sells large amounts of securities at a time, its transaction costs are lower than you as an individual would pay.</li>
+          <li><strong>Liquidity:</strong> Just like an individual stock, a mutual fund allows you to request that your shares be converted into cash at any time.</li>
+          <li><strong>Simplicity:</strong> Buying a mutual fund is easy! Most companies have their own line of mutual funds, and the minimum investment is small.</li>
+        </ul>
+      </div>
+      <h3>Creating Wealth Through Mutual Funds</h3>
+      <p>Through mutual funds we can create wealth and also forgo the market risk factor by a technique called averaging which can be achieved through Systematic Investment Plan (SIP) and Systematic Transfer Plan (STP).</p>
+      <div class="product-cta">
+        <a href="#contact" class="cta-button">Invest in Mutual Funds</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bonds Section -->
+  <section id="bonds" class="product-section">
+    <h2 style="background-image: url('https://www.incharge.org/wp-content/uploads/2020/07/Bond-Indices.jpg')">
+      <span>Bonds</span>
+    </h2>
+    <div class="product-content">
+      <h3>Stable, Fixed-Income Securities</h3>
+      <p>Bonds are fixed income instruments that represent a loan made by an investor to a borrower (typically corporate or governmental). Bonds are used by companies, municipalities, states, and sovereign governments to wealth projects and operations. Owners of bonds are debtholders, or creditors, of the issuer.</p>
+      <div class="product-benefits">
+        <h4>Key Benefits of Bonds:</h4>
+        <ul>
+          <li>Steady and predictable income through interest payments</li>
+          <li>Lower risk compared to equities</li>
+          <li>Portfolio diversification</li>
+          <li>Potential tax advantages on certain bonds</li>
+          <li>Wide range of maturities and issuers</li>
+        </ul>
+      </div>
+      <div class="product-cta">
+        <a href="#contact" class="cta-button">Explore Bond Options</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Estate Section -->
+  <section id="real-estate" class="product-section">
+    <h2 style="background-image: url('https://imageio.forbes.com/specials-images/imageserve/657b29edf09ae8354c4debba/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds')">
+      <span>Real Estate</span>
+    </h2>
+    <div class="product-content">
+      <h3>Property as a Growth Asset</h3>
+      <p>Land in India is a scarce resource. With India’s strong population growth coupled with a rising per capita income, the price of land is bound to increase. Real Estate is an important growth driver in any portfolio and an important ingredient in terms of Asset Allocation.</p>
+      <p>Real Estate in India is growing at a phenomenal pace and contributes 5-6% of India’s GDP. It is also the 2nd largest source of employment in the country. Growth of this sector is primarily due to the shift in population from the rural areas to the cities.</p>
+      <div class="product-benefits">
+        <ul>
+          <li>Major foreign funds and investors are partnering with Indian real estate companies to enter this growing segment.</li>
+          <li>Individuals should focus on real estate as a preferred avenue of investments and wealth creation.</li>
+          <li>Buying or selling property is a complex process; we act as a facilitator, helping you save time and energy and provide the best available units in the market.</li>
+          <li>We handle everything from scanning, selecting properties, negotiating terms, to finalizing the deal.</li>
+        </ul>
+      </div>
+      <div class="product-cta">
+        <a href="#contact" class="cta-button">Discover Real Estate Opportunities</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alternative Investment Funds Section -->
+  <section id="aif" class="product-section">
+    <h2 style="background-image: url('https://www.kfintech.com/wp-content/uploads/2022/09/investment-fund-scaled.jpg')">
+      <span>Alternative Investment Funds</span>
+    </h2>
+    <div class="product-content">
+      <h3>Diversify Beyond Traditional Assets</h3>
+      <p>Alternate Investment Funds (AIFs) are investments primarily made by HNIs or institutional investors into asset classes other than stocks, bonds, and cash. AIFs usually include real estate, private equity, hedge funds, and venture capital funds or investments using strategies that go beyond traditional ways of investing, such as long/short or arbitrage strategies.</p>
+      <div class="product-benefits">
+        <ul>
+          <li>Broader diversification and potential risk reduction</li>
+          <li>Access to high-return opportunities in the long run</li>
+          <li>Portfolio enhancement through alternative strategies</li>
+          <li>WealthApp is empanelled with exceptional third-party AIF providers</li>
+        </ul>
+      </div>
+      <div class="product-cta">
+        <a href="#contact" class="cta-button">Learn More About AIFs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Structured Products Section -->
+  <section id="structured-products" class="product-section">
+    <h2 style="background-image: url('https://data.cbonds.info//files/glossary/202401/mceu_18668629811706038255074.jpg')">
+      <span>Structured Products</span>
+    </h2>
+    <div class="product-content">
+      <h3>Page coming soon</h3>
+      <p></p>
+      <div class="product-benefits">
+        <ul>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+        </ul>
+      </div>
+      <div class="product-cta">
+        <a href="#contact" class="cta-button">Get Structured Solutions</a>
+      </div>
+    </div>
+  </section>
+<script>
+  // Sticky header on scroll
+  window.addEventListener('scroll', function() {
+    var stickyHeader = document.getElementById('stickyHeader');
+    if (window.scrollY > 60) {
+      stickyHeader.classList.add('scrolled');
+    } else {
+      stickyHeader.classList.remove('scrolled');
+    }
+  });
+
+  // Smooth scrolling for product navigation
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const headerOffset = 120;
+        const elementPosition = target.offsetTop;
+        const offsetPosition = elementPosition - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Update active navigation based on scroll position
+  window.addEventListener('scroll', function() {
+    const sections = document.querySelectorAll('.product-section');
+    const navLinks = document.querySelectorAll('.products-nav-list a');
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (window.scrollY >= (sectionTop - 200)) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

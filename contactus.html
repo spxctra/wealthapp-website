@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us | WealthApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #f7f7f7;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      color: #14225a;
+    }
+    .sticky-header {
+      width: 100%;
+      background: #0a1756;
+      display: flex;
+      align-items: center;
+      padding: 0;
+      position: relative;
+      z-index: 1001;
+      min-height: 90px;
+      transition: box-shadow 0.22s, padding 0.22s, background 0.22s;
+    }
+    .sticky-header.scrolled {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #0a1756;
+      box-shadow: 0 2px 12px rgba(20,34,90,0.08);
+      min-height: 54px;
+    }
+    .logo-img {
+      height: 110px;
+      max-width: 260px;
+      width: auto;
+      margin-left: 36px;
+      margin-right: 18px;
+      background: transparent;
+      transition: height 0.3s cubic-bezier(.4,2,.6,1), margin 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    .sticky-header.scrolled .logo-img {
+      height: 54px;
+      margin-left: 12px;
+      margin-right: 12px;
+    }
+    .navbar {
+      flex: 1;
+      background: transparent;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+    }
+    .navbar-menu {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 18px;
+      justify-content: center;
+      width: 100%;
+    }
+    .navbar-menu li {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-menu a {
+      display: block;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.15rem;
+      text-decoration: none;
+      padding: 10px 10px;
+      border-radius: 3px;
+      font-weight: 400;
+      transition: color 0.2s, background 0.2s;
+      position: relative;
+    }
+    .navbar-menu a .arrow {
+      font-size: 0.8em;
+      margin-left: 3px;
+    }
+    .navbar-menu a:hover,
+    .navbar-menu a:focus {
+      color: #b7ba4b;
+      font-weight: 600;
+    }
+    .navbar-menu .dropdown {
+      position: relative;
+    }
+    .navbar-menu .dropdown-menu {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      background: #0a1756;
+      min-width: 250px;
+      border-radius: 0 0 12px 12px;
+      padding: 14px 0 14px 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+      z-index: 100;
+      border: 3px solid #7b5be6;
+      border-top: none;
+    }
+    .navbar-menu .dropdown:hover > .dropdown-menu,
+    .navbar-menu .dropdown:focus-within > .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu a {
+      display: block;
+      color: #fff;
+      padding: 7px 28px 7px 18px;
+      font-size: 1.08rem;
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s, background 0.2s;
+      border-radius: 0;
+      white-space: nowrap;
+    }
+    .dropdown-menu a:hover,
+    .dropdown-menu a:focus {
+      color: #b7ba4b;
+      font-weight: 600;
+      background: none;
+    }
+    .navbar-menu .dropdown:hover > a,
+    .navbar-menu .dropdown:focus-within > a {
+      color: #b7ba4b;
+      font-weight: 600;
+    }
+    @media (max-width: 1100px) {
+      .navbar-menu {
+        gap: 10px;
+      }
+      .navbar-menu a {
+        font-size: 1rem;
+        padding: 8px 8px;
+      }
+    }
+    @media (max-width: 700px) {
+      .logo-img {
+        height: 70px;
+        margin-left: 8px;
+        margin-right: 8px;
+      }
+      .sticky-header.scrolled .logo-img {
+        height: 38px;
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+    }
+    .contact-banner {
+      width: 100%;
+      min-height: 220px;
+      background: #14225a;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-banner img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      opacity: 0.93;
+    }
+    .contact-cards-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 32px;
+      background: #fff;
+      padding: 32px 0 18px 0;
+      max-width: 1100px;
+      margin: -60px auto 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(20,34,90,0.08);
+      z-index: 2;
+      position: relative;
+    }
+    .contact-card {
+      flex: 1 1 260px;
+      min-width: 220px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(20,34,90,0.06);
+      padding: 24px 18px 18px 18px;
+      text-align: center;
+      margin: 0 8px;
+      border: 1.5px solid #f7f7f7;
+      transition: box-shadow 0.18s, border 0.18s;
+    }
+    .contact-card:hover {
+      border: 1.5px solid #b7ba4b;
+      box-shadow: 0 6px 24px #b7ba4b22;
+    }
+    .contact-card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .contact-card-title {
+      font-size: 1.13rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #14225a;
+    }
+    .contact-card-info {
+      color: #42507a;
+      font-size: 1.05rem;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+    .contact-section-main {
+      max-width: 1100px;
+      margin: 32px auto 0 auto;
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      align-items: flex-start;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(20,34,90,0.07);
+      padding: 36px 28px;
+      position: relative;
+    }
+    .contact-form-col {
+      flex: 1 1 340px;
+      min-width: 260px;
+      max-width: 420px;
+      padding-right: 16px;
+    }
+    .contact-form-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: #14225a;
+    }
+    .contact-form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #42507a;
+      font-size: 1rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #b7ba4b;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-bottom: 18px;
+      background: #fafbfc;
+      color: #14225a;
+      outline: none;
+      transition: border 0.18s;
+      resize: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border: 1.5px solid #2186d4;
+    }
+    .contact-form textarea {
+      min-height: 80px;
+      max-height: 180px;
+    }
+    .contact-form .contact-send-btn {
+      background: #14225a;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 28px;
+      font-size: 1.08rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, transform 0.18s;
+      margin-top: 10px;
+    }
+    .contact-form .contact-send-btn:hover {
+      background: #b7ba4b;
+      color: #14225a;
+      transform: translateY(-2px) scale(1.04);
+    }
+    .contact-form .contact-label {
+      font-size: 0.98rem;
+      color: #b7ba4b;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .contact-map-col {
+      flex: 1 1 340px;
+      min-width: 260px;
+      max-width: 480px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .contact-map {
+      width: 100%;
+      min-height: 260px;
+      border-radius: 12px;
+      border: 1.5px solid #b7ba4b;
+      box-shadow: 0 2px 12px #b7ba4b22;
+    }
+    .contact-social-vertical {
+      position: absolute;
+      right: 12px;
+      top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 2;
+    }
+    .contact-social-vertical a {
+      display: inline-block;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px #14225a22;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.18s, background 0.18s;
+      border: 1.5px solid #f7f7f7;
+    }
+    .contact-social-vertical a:hover {
+      background: #b7ba4b;
+      box-shadow: 0 4px 16px #b7ba4b44;
+    }
+    .contact-social-vertical img {
+      width: 22px;
+      height: 22px;
+      filter: grayscale(0%) brightness(0.8) sepia(1) hue-rotate(180deg) saturate(2);
+      transition: filter 0.2s;
+    }
+    .contact-social-vertical a:hover img {
+      filter: grayscale(0%) brightness(1) sepia(1) hue-rotate(45deg) saturate(4);
+    }
+    @media (max-width: 1100px) {
+      .contact-cards-row,
+      .contact-section-main {
+        flex-direction: column;
+        gap: 18px;
+        padding: 22px 8px;
+      }
+      .contact-map-col {
+        max-width: 100%;
+        min-width: 0;
+        padding: 0;
+      }
+      .contact-form-col {
+        max-width: 100%;
+        min-width: 0;
+        padding: 0;
+      }
+      .contact-social-vertical {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 10px;
+      }
+    }
+    @media (max-width: 700px) {
+      .contact-banner img {
+        height: 120px;
+      }
+      .contact-cards-row {
+        flex-direction: column;
+        gap: 12px;
+        margin: -40px auto 0 auto;
+        padding: 18px 0 10px 0;
+      }
+      .contact-section-main {
+        padding: 18px 4px;
+      }
+    }
+   </style>
+</head>
+<header class="sticky-header" id="stickyHeader">
+  <img src="Images/logo2.jpeg" alt="WealthApp Logo" class="logo-img" id="mainLogo">
+  <nav class="navbar">
+    <ul class="navbar-menu">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="">About <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="aboutustester.html">Our Company</a></li>
+          <li><a href="#">Brochure</a></li>
+          <li><a href="testimonials.html">Client Testimonials</a></li>
+          <li class="submenu-parent">
+            <a href="#">Gallery</a>
+            <ul class="submenu">
+              <li><a href="#">Awards</a></li>
+              <li><a href="#">Team Pics</a></li>
+              <li><a href="#">Certificates</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="services.html">Services <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="services.html">Wealth Management</a></li>
+          <li><a href="services.html">Estate and Trust Planning</a></li>
+          <li><a href="services.html">Dedicated NRI Cell</a></li>
+          <li><a href="services.html">Portfolio Management Services</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="products.html">Products <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="products.html">Mutual Funds</a></li>
+          <li><a href="products.html">Bonds</a></li>
+          <li><a href="products.html">Real Estate</a></li>
+          <li><a href="products.html">Alternative Investment Funds</a></li>
+          <li><a href="products.html">Structured Products</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Holiday Adda</a></li>
+      <li class="dropdown">
+        <a href="#">Investor Zone <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li class="submenu-parent">
+            <a href="#">Tools</a>
+            <ul class="submenu">
+              <li><a href="https://wealthappdistributors.com/schemePerformance.php">Mutual Fund Performance</a></li>
+              <li><a href="https://wealthappdistributors.com/pastSipPerformance.php">Past SIP Performance</a></li>
+              <li><a href="https://wealthappdistributors.com/fundComparison.php">Fund Comparison</a></li>
+              <li><a href="https://wealthappdistributors.com/dividendAnnounced.php">Dividend Announced</a></li>
+              <li><a href="https://wealthappdistributors.com/downloadMFform.php">Download MF Forms</a></li>
+            </ul>
+          </li>
+          <li><a href="#">KYC</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Login</a></li>
+      <li><a href="contactus.html">Contact</a></li>
+    </ul>
+  </nav>
+    </ul>
+</header>
+
+  <!-- Banner -->
+  <div class="contact-banner">
+    <img src="Images/09943442-5b9d-4a4f-9824-a7c4a21c7d95 2.jpg" alt="Contact WealthApp">
+  </div>
+
+  <!-- Info Cards -->
+  <div class="contact-cards-row">
+    <div class="contact-card">
+      <span class="contact-card-icon" style="color:#b7ba4b;">&#128205;</span>
+      <div class="contact-card-title">Address</div>
+      <div class="contact-card-info">
+        55 Chowringhee Road, 1<sup>st</sup> Floor, Unit 11,<br>
+        Kolkata 700071, West Bengal, India
+      </div>
+    </div>
+    <div class="contact-card">
+      <span class="contact-card-icon" style="color:#2186d4;">&#128222;</span>
+      <div class="contact-card-title">Phone</div>
+      <div class="contact-card-info">
+        +91 8100713678, +91 33 3510 2383
+      </div>
+    </div>
+    <div class="contact-card">
+      <span class="contact-card-icon" style="color:#b7ba4b;">&#128231;</span>
+      <div class="contact-card-title">Email</div>
+      <div class="contact-card-info">
+        services@wealthapponline.com
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form and Map -->
+  <section class="contact-section-main">
+    <div class="contact-form-col">
+      <div class="contact-form-title">Ask a query</div>
+      <form class="contact-form" autocomplete="off">
+        <label for="contact-name">Name</label>
+        <input type="text" id="contact-name" name="name" required placeholder="Your Name">
+        <label for="contact-email">Email Address</label>
+        <input type="email" id="contact-email" name="email" required placeholder="Your Email">
+        <label for="contact-phone">Phone</label>
+        <input type="tel" id="contact-phone" name="phone" required placeholder="Your Phone Number">
+        <label for="contact-message" class="contact-label">Your message</label>
+        <textarea id="contact-message" name="message" required placeholder="Type your message"></textarea>
+        <button type="submit" class="contact-send-btn">Send Message</button>
+      </form>
+    </div>
+    <div class="contact-map-col">
+      <iframe class="contact-map"
+        src="https://www.google.com/maps?q=55+Chowringhee+Road,+Kolkata+700071,+India&output=embed"
+        frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      <div class="contact-social-vertical">
+        <a href="https://facebook.com/" target="_blank" aria-label="Facebook">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+        </a>
+        <a href="https://twitter.com/" target="_blank" aria-label="Twitter">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter">
+        </a>
+        <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+        </a>
+        <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Sticky header on scroll
+    window.addEventListener('scroll', function() {
+      var stickyHeader = document.getElementById('stickyHeader');
+      if (window.scrollY > 60) {
+        stickyHeader.classList.add('scrolled');
+      } else {
+        stickyHeader.classList.remove('scrolled');
+      }
+    });
+    // Optional: Prevent default form submission for demo
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! We will get back to you soon.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>

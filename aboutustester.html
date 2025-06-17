@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Management | WealthApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome for LinkedIn icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .navbar {
+      width: 100%;
+      background: #0a1756;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 54px;
+    }
+    /* Dropdown menu styles */
+.navbar-menu .dropdown {
+  position: relative;
+}
+.navbar-menu .dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #0a1756;
+  min-width: 260px;
+  border-radius: 0 0 12px 12px;
+  padding: 10px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  z-index: 100;
+  border: 3px solid #7b5be6; /* purple border */
+  border-top: none;
+}
+.navbar-menu .dropdown:hover > .dropdown-menu,
+.navbar-menu .dropdown:focus-within > .dropdown-menu {
+  display: block;
+}
+.dropdown-menu li {
+  position: relative;
+}
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  color: #fff;
+  padding: 7px 28px 7px 18px;
+  font-size: 1.08rem;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.dropdown-menu a:hover,
+.dropdown-menu a:focus,
+.submenu a:hover,
+.submenu a:focus {
+  color: #b7ba4b;
+  font-weight: 600;
+  background: none;
+}
+.dropdown-menu .submenu-parent > a {
+  font-weight: 400;
+  color: #fff;
+  padding-right: 40px;
+  position: relative;
+}
+.dropdown-menu .submenu-parent > a:after {
+  content: "›";
+  position: absolute;
+  right: 22px;
+  color: #fff;
+  font-size: 1.1em;
+}
+
+.profile-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(20,34,90,0.07);
+  width: 230px;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+  transition: box-shadow 0.2s, border 0.2s, transform 0.2s;
+  margin-bottom: 16px;
+  cursor: pointer;
+  border: 2.5px solid transparent;
+  z-index: 1;
+  text-decoration: none;
+  display: block;
+}
+.profile-card:hover,
+.profile-card:focus {
+  box-shadow: 0 6px 32px rgba(20,34,90,0.13);
+  border: 2.5px solid #14225a;
+  z-index: 2;
+  transform: translateY(-4px) scale(1.03);
+}
+.profile-card:active {
+  filter: brightness(0.97);
+}
+.profile-img-wrap {
+  width: 100%;
+  aspect-ratio: 1/1; /* Makes the wrapper square */
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Covers the area, crops if needed. Use 'contain' to show full image */
+  object-position: center;
+  border-radius: 16px 16px 0 0;
+  display: block;
+  background: #fff;
+}
+
+.profile-name {
+  font-size: 1.08rem;
+  color: #14225a;
+  font-weight: 700;
+  margin-top: 14px;
+  margin-bottom: 0;
+  letter-spacing: 0.2px;
+}
+.profile-role {
+  font-size: 0.97rem;
+  color: #42507a;
+  margin-bottom: 14px;
+}
+
+
+.dropdown-menu .submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: #0a1756;
+  min-width: 220px;
+  border-radius: 0 12px 12px 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  z-index: 200;
+  padding: 0;
+  border: 3px solid #7b5be6; /* purple border */
+  border-left: none;
+}
+.dropdown-menu .submenu-parent:hover > .submenu,
+.dropdown-menu .submenu-parent:focus-within > .submenu {
+  display: block;
+}
+.dropdown-menu .submenu li {
+  padding: 0;
+}
+
+/* Highlight parent menu when dropdown/submenu is open */
+.navbar-menu .dropdown:hover > a,
+.navbar-menu .dropdown:focus-within > a,
+.dropdown-menu .submenu-parent:hover > a,
+.dropdown-menu .submenu-parent:focus-within > a {
+  color: #b7ba4b;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .navbar-menu .dropdown-menu,
+  .dropdown-menu .submenu {
+    position: static;
+    box-shadow: none;
+    min-width: 100%;
+    border-radius: 0;
+    border: none;
+  }
+}
+
+    /* Dropdown menu styles */
+.navbar-menu .dropdown {
+  position: relative;
+}
+.navbar-menu .dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #0a1756;
+  min-width: 250px;
+  border-radius: 0 0 12px 12px;
+  padding: 14px 0 14px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  z-index: 100;
+}
+.navbar-menu .dropdown:hover > .dropdown-menu,
+.navbar-menu .dropdown:focus-within > .dropdown-menu {
+  display: block;
+}
+.dropdown-menu li {
+  position: relative;
+}
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  color: #fff;
+  padding: 7px 28px 7px 18px;
+  font-size: 1.08rem;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.dropdown-menu a:hover,
+.dropdown-menu a:focus,
+.submenu a:hover,
+.submenu a:focus {
+  color: #b7ba4b;
+  font-weight: 600;
+  background: none;
+}
+.dropdown-menu .submenu-parent > a {
+  font-weight: 400;
+  color: #fff;
+  padding-right: 40px;
+  position: relative;
+}
+.dropdown-menu .submenu-parent > a:after {
+  content: "›";
+  position: absolute;
+  right: 22px;
+  color: #fff;
+  font-size: 1.1em;
+}
+.dropdown-menu .submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: #0a1756;
+  min-width: 220px;
+  border-radius: 0 12px 12px 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  z-index: 200;
+  padding: 0;
+}
+.dropdown-menu .submenu-parent:hover > .submenu,
+.dropdown-menu .submenu-parent:focus-within > .submenu {
+  display: block;
+}
+.dropdown-menu .submenu li {
+  padding: 0;
+}
+
+/* Highlight parent menu when dropdown/submenu is open */
+.navbar-menu .dropdown:hover > a,
+.navbar-menu .dropdown:focus-within > a,
+.dropdown-menu .submenu-parent:hover > a,
+.dropdown-menu .submenu-parent:focus-within > a {
+  color: #b7ba4b;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .navbar-menu .dropdown-menu,
+  .dropdown-menu .submenu {
+    position: static;
+    box-shadow: none;
+    min-width: 100%;
+    border-radius: 0;
+  }
+}
+
+    .navbar-menu {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 18px;
+    }
+    .navbar-menu li {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-menu a {
+      display: block;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.15rem;
+      text-decoration: none;
+      padding: 10px 10px;
+      border-radius: 3px;
+      font-weight: 400;
+      transition: color 0.2s, background 0.2s;
+      position: relative;
+    }
+    .navbar-menu a .arrow {
+      font-size: 0.8em;
+      margin-left: 3px;
+    }
+    .navbar-menu a:hover,
+    .navbar-menu a:focus {
+      color: #b7ba4b;
+      font-weight: 600;
+    }
+    @media (max-width: 1100px) {
+      .navbar-menu {
+        gap: 10px;
+      }
+      .navbar-menu a {
+        font-size: 1rem;
+        padding: 8px 8px;
+      }
+    }
+    .logo-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      padding: 32px 0 16px 0; /* slightly more padding for balance */
+    }
+    
+    .logo-img {
+      height: 150px; /* increase from 70px to 110px */
+      max-width: 250px; /* keep it responsive */
+      width: auto;
+      margin-bottom: 8px;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #fff;
+      color: #14225a;
+    }
+    .company-section {
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
+      padding: 0 16px 48px 16px;
+      background: #fff;
+    }
+    .company-team-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #14225a;
+      letter-spacing: 1px;
+      margin-top: 32px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .company-description {
+      font-size: 1.07rem;
+      color: #42507a;
+      margin: 18px 0 32px 0;
+      line-height: 1.7;
+      max-width: 900px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 36px 32px;
+      margin: 36px auto 0 auto;
+      max-width: 1200px;
+      position: relative;
+    }
+    .profile-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 2px 12px rgba(20,34,90,0.07);
+      width: 230px;
+      text-align: center;
+      position: relative;
+      overflow: visible;
+      transition: box-shadow 0.2s, border 0.2s;
+      margin-bottom: 16px;
+      cursor: pointer;
+      border: 2.5px solid transparent;
+      z-index: 1;
+    }
+    .profile-card {
+      position: relative;
+      /* ...existing styles... */
+    }
+    
+    .profile-info-box {
+      position: absolute;
+      top: 0;
+      left: 105%;
+      width: 340px;
+      min-height: 180px;
+      background: #14225a;
+      color: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(20,34,90,0.17);
+      padding: 24px 24px 18px 24px;
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      animation: fadeInUp 0.4s;
+      overflow-y: auto;
+      max-height: 350px;
+      box-sizing: border-box;
+    }
+    
+    .profile-card.show-info .profile-info-box {
+      display: flex;
+    }
+    
+    @media (max-width: 1100px) {
+      .profile-info-box {
+        position: fixed;
+        left: 50% !important;
+        top: 12vh !important;
+        transform: translateX(-50%);
+        width: 90vw;
+        max-width: 420px;
+        z-index: 1002;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .profile-info-box {
+        left: 50% !important;
+        top: 8vh !important;
+        width: 94vw !important;
+        min-width: 0 !important;
+        padding: 16px 12px 14px 12px;
+      }
+    }
+    
+    .profile-card.selected, .profile-card:hover, .profile-card:focus-within {
+      box-shadow: 0 6px 32px rgba(20,34,90,0.13);
+      border: 2.5px solid #14225a;
+      z-index: 2;
+    }
+    .profile-img-wrap {
+  width: 100%;
+  height: auto; /* or set a fixed height if you want, e.g. 280px */
+  min-height: 200px; /* optional: prevents collapse if image is missing */
+  max-height: 280px; /* optional: prevents images from being too large */
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* shows full image, never crops */
+  object-position: center;
+  display: block;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+}
+
+    
+    .profile-name {
+      font-size: 1.08rem;
+      color: #14225a;
+      font-weight: 700;
+      margin-top: 14px;
+      margin-bottom: 0;
+      letter-spacing: 0.2px;
+    }
+    .profile-role {
+      font-size: 0.97rem;
+      color: #42507a;
+      margin-bottom: 14px;
+    }
+    /* Info box styles */
+    .profile-info-box {
+      position: absolute;
+      left: 105%;
+      top: 0;
+      width: 340px;
+      min-height: 180px;
+      background: #14225a;
+      color: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(20,34,90,0.17);
+      padding: 24px 24px 18px 24px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      animation: fadeInUp 0.4s;
+    }
+    .profile-info-box p {
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .profile-info-box .linkedin-link {
+      color: #b7ba4b;
+      font-size: 1.35rem;
+      display: inline-block;
+      margin-top: 8px;
+      transition: color 0.2s;
+    }
+    .profile-info-box .linkedin-link:hover {
+      color: #fff;
+    }
+    @media (max-width: 1100px) {
+      .team-grid {
+        gap: 24px 12px;
+      }
+      .profile-card {
+        width: 45vw;
+        min-width: 170px;
+      }
+    }
+    @media (max-width: 900px) {
+      .profile-info-box {
+        position: fixed;
+        left: 50%;
+        top: 12vh;
+        transform: translateX(-50%);
+        width: 90vw;
+        max-width: 420px;
+        z-index: 1002;
+      }
+      .team-grid {
+        gap: 18px 8px;
+      }
+    }
+    @media (max-width: 600px) {
+      .team-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+      }
+      .profile-card {
+        width: 92vw;
+        max-width: 320px;
+      }
+      .profile-info-box {
+        left: 50% !important;
+        top: 8vh !important;
+        width: 94vw !important;
+        min-width: 0 !important;
+        padding: 16px 12px 14px 12px;
+      }
+    }
+    /* Overlay for modal effect on small screens */
+    .info-overlay-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(20,34,90,0.25);
+      z-index: 1001;
+      display: none;
+    }
+    .info-overlay-bg.active {
+      display: block;
+    }
+  </style>
+</head>
+<header class="sticky-header" id="stickyHeader">
+  <img src="Images/logo2.jpeg" alt="WealthApp Logo" class="logo-img" id="mainLogo">
+  <nav class="navbar">
+    <ul class="navbar-menu">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="">About <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="aboutustester.html">Our Company</a></li>
+          <li><a href="#">Brochure</a></li>
+          <li><a href="testimonials.html">Client Testimonials</a></li>
+          <li class="submenu-parent">
+            <a href="#">Gallery</a>
+            <ul class="submenu">
+              <li><a href="#">Awards</a></li>
+              <li><a href="#">Team Pics</a></li>
+              <li><a href="#">Certificates</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="services.html">Services <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="services.html">Wealth Management</a></li>
+          <li><a href="services.html">Estate and Trust Planning</a></li>
+          <li><a href="services.html">Dedicated NRI Cell</a></li>
+          <li><a href="services.html">Portfolio Management Services</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="products.html">Products <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="products.html">Mutual Funds</a></li>
+          <li><a href="products.html">Bonds</a></li>
+          <li><a href="products.html">Real Estate</a></li>
+          <li><a href="products.html">Alternative Investment Funds</a></li>
+          <li><a href="products.html">Structured Products</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Holiday Adda</a></li>
+      <li class="dropdown">
+        <a href="#">Investor Zone <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li class="submenu-parent">
+            <a href="#">Tools</a>
+            <ul class="submenu">
+              <li><a href="https://wealthappdistributors.com/schemePerformance.php">Mutual Fund Performance</a></li>
+              <li><a href="https://wealthappdistributors.com/pastSipPerformance.php">Past SIP Performance</a></li>
+              <li><a href="https://wealthappdistributors.com/fundComparison.php">Fund Comparison</a></li>
+              <li><a href="https://wealthappdistributors.com/dividendAnnounced.php">Dividend Announced</a></li>
+              <li><a href="https://wealthappdistributors.com/downloadMFform.php">Download MF Forms</a></li>
+            </ul>
+          </li>
+          <li><a href="#">KYC</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Login</a></li>
+      <li><a href="contactus.html">Contact</a></li>
+    </ul>
+  </nav>
+    </ul>
+</header>
+
+  <!-- LOGO BELOW NAVBAR -->
+  <div class="logo-header">
+    <img src="Images/logo2.jpeg" alt="WealthApp Logo" class="logo-img">
+    <div class="logo-text">
+    </div>
+  </div>
+<div class="company-section">
+
+  <!-- KEY MANAGEMENT -->
+  <div class="company-team-title">KEY MANAGEMENT</div>
+  <div class="company-description">
+    WealthApp’s key management brings together decades of experience in the finance industry, along with deep knowledge and expertise. We’re united in a mission to provide the highest quality advice and service to our clients, with a client-first approach and a passion for excellence. Our leadership team sets the tone for our culture and values, ensuring that every client receives the best possible guidance and support.
+  </div>
+  <div class="team-grid" id="teamGrid">
+    <!-- 1 -->
+    <a href="file://Images/progs6/HTML/soumyajit.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/ss1.png" alt="Soumyajit Ghosh">
+      </div>
+      <div class="profile-name">Soumyajit Ghosh</div>
+      <div class="profile-role">Founder Director</div>
+    </a>
+    <!-- 2 -->
+    <a href="profile-neeladri.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/ss3.png" alt="Neeladri Misra">
+      </div>
+      <div class="profile-name">Neeladri Misra</div>
+      <div class="profile-role">Executive Director</div>
+    </a>
+    <!-- 3 -->
+    <a href="file://Images/progs6/HTML/apc.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/ss2.png" alt="Anindya Paulchaudhuri">
+      </div>
+      <div class="profile-name">Anindya Paulchaudhuri</div>
+      <div class="profile-role">CEO</div>
+    </a>
+    <!-- 4 -->
+    <a href="profile-jaydeep.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/ss4.png" alt="Jaydeep Pratap">
+      </div>
+      <div class="profile-name">Jaydeep Pratap</div>
+      <div class="profile-role">COO</div>
+    </a>
+    <!-- 5 -->
+    <a href="profile-debankur.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/ss6.png" alt="Debankur Sengupta">
+      </div>
+      <div class="profile-name">Debankur Sengupta</div>
+      <div class="profile-role">Chief Business Officer</div>
+    </a>
+    <!-- 6 -->
+    <a href="profile-payel.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Payal.png" alt="Payel">
+      </div>
+      <div class="profile-name">Payal Chatram</div>
+      <div class="profile-role">Director</div>
+    </a>
+    <!-- 7 -->
+    <a href="profile-manpreet.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/ss5.png" alt="Manpreet Sandhu">
+      </div>
+      <div class="profile-name">Manpreet Sandhu</div>
+      <div class="profile-role">Director</div>
+    </a>
+    <!-- 8 -->
+    <a href="profile-amit.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/amit.png" alt="Amit">
+      </div>
+      <div class="profile-name">Amit Sinha</div>
+      <div class="profile-role">Senior Vice President</div>
+    </a>
+    <!-- 9 -->
+    <a href="profile-tahir.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/tahir.png" alt="Tahir">
+      </div>
+      <div class="profile-name">Mohammad Tahir</div>
+      <div class="profile-role">Vice President & Regional Head</div>
+    </a>
+    <!-- 10 -->
+    <a href="profile-nidhi.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Nidhi.png" alt="Nidhi">
+      </div>
+      <div class="profile-name">Nidhi Uppadhyay</div>
+      <div class="profile-role">VP - Client Relations</div>
+    </a>
+    <!-- 11 -->
+    <a href="profile-jayanta.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/ss7.png" alt="Jayanta Mukherjee">
+      </div>
+      <div class="profile-name">Jayanta Mukherjee</div>
+      <div class="profile-role">Vice President, Client Experience</div>
+    </a>
+    <!-- 12 -->
+    <a href="profile-ritunsha.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Ritunsha.png" alt="Ritunsha Lalwani">
+      </div>
+      <div class="profile-name">Ritunsha Lalwani</div>
+      <div class="profile-role">Internal Auditor</div>
+    </a>
+    <!-- 13 -->
+    <a href="profile-ankit.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/ankit.png" alt="Ankit">
+      </div>
+      <div class="profile-name">Ankit Tripathi</div>
+      <div class="profile-role">Vice President & Regional Head</div>
+    </a>
+  </div>
+
+  <!-- IT & SUPPORT TEAM -->
+  <div class="company-team-title">IT & SUPPORT TEAM</div>
+  <div class="company-description">
+    The IT & Support Team at WealthApp ensures seamless digital operations, robust client servicing, and the backbone of our technology-driven solutions.
+  </div>
+  <div class="team-grid" id="itSupportGrid">
+    <a href="profile-luna.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Luna.png" alt="Luna">
+      </div>
+      <div class="profile-name">Luna Sinha Maiti</div>
+      <div class="profile-role">VP - Finance and Compliance</div>
+    </a>
+    <a href="profile-jayatee.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/JayateeD.png" alt="Jayatee">
+      </div>
+      <div class="profile-name">Jayatee Das</div>
+      <div class="profile-role">AVP - Operations</div>
+    </a>
+    <a href="profile-abhik.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Abhik.png" alt="Abhik">
+      </div>
+      <div class="profile-name">Abhik Misra</div>
+      <div class="profile-role">AVP - IT & Digital Marketing</div>
+    </a>
+    <a href="profile-sanchita.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Sanchita.png" alt="Sanchita">
+      </div>
+      <div class="profile-name">Sanchita Ghosh Dey</div>
+      <div class="profile-role">Sr. Manager - Operations</div>
+    </a>
+    <a href="profile-sunanda.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Sunanda.png" alt="Sunanda">
+      </div>
+      <div class="profile-name">Sunanda Ghosh</div>
+      <div class="profile-role">Manager - Client Engagement</div>
+    </a>
+    <a href="profile-rahulghosh.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/RahulG.png" alt="Rahul Ghosh">
+      </div>
+      <div class="profile-name">Rahul Ghosh</div>
+      <div class="profile-role">Manager - System</div>
+    </a>
+    <a href="profile-niti.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Niti.png" alt="Niti Chawla">
+      </div>
+      <div class="profile-name">Niti Chawla</div>
+      <div class="profile-role">Manager - Client Relationship</div>
+    </a>
+    <a href="profile-ranjini.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Ranjini.png" alt="Ranjini">
+      </div>
+      <div class="profile-name">Ranjini Ghosh</div>
+      <div class="profile-role">Client Experience</div>
+    </a>
+    <a href="profile-imana.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/ImanaG.png" alt="Imana">
+      </div>
+      <div class="profile-name">Imana Ghose</div>
+      <div class="profile-role">Manager Client Engagement-Global Business</div>
+    </a>
+  </div>
+
+  <!-- RELATIONSHIP MANAGERS -->
+  <div class="company-team-title">RELATIONSHIP MANAGERS</div>
+  <div class="company-description">
+    Our Relationship Managers are the bridge between WealthApp and our valued clients, providing personalized service and expert guidance.
+  </div>
+  <div class="team-grid" id="relationshipManagersGrid">
+    <a href="profile-sudipdas.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/SudipD.png" alt="Sudip Das">
+      </div>
+      <div class="profile-name">Sudip Das</div>
+      <div class="profile-role">Sr. Manager - Sales</div>
+    </a>
+    <a href="profile-subham.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/SubhamD.png" alt="Subham D">
+      </div>
+      <div class="profile-name">Subham Dasgupta</div>
+      <div class="profile-role">Manager - Sales</div>
+    </a>
+    <a href="profile-vivek.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Vivek.png" alt="Vivek Sinha">
+      </div>
+      <div class="profile-name">Vivek Sinha</div>
+      <div class="profile-role">Manager - Sales</div>
+    </a>
+    <a href="profile-sudipchak.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/SudipC.png" alt="Sudip Chakraborty">
+      </div>
+      <div class="profile-name">Sudip Chakraborty</div>
+      <div class="profile-role">Manager - Sales</div>
+    </a>
+    <a href="profile-kavita.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Sunanda.png" alt="Kavita Agarwal">
+      </div>
+      <div class="profile-name">Kavita Agarwal</div>
+      <div class="profile-role">Area Manager - Client Relationship</div>
+    </a>
+    <a href="profile-vishankan.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Subhajit.png" alt="Vishankan N">
+      </div>
+      <div class="profile-name">Vishakan Nagarajan</div>
+      <div class="profile-role">Manager Client Relation</div>
+    </a>
+    <a href="profile-rishav.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Rishav.png" alt="Rishav Saha">
+      </div>
+      <div class="profile-name">Rishav Saha</div>
+      <div class="profile-role">Asst. Manager - Sales</div>
+    </a>
+    <a href="profile-rahuldhar.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Subhajit.png" alt="Rahul Dhar">
+      </div>
+      <div class="profile-name">Rahul Dhar</div>
+      <div class="profile-role">Asst. Manager - Client service</div>
+    </a>
+    <a href="profile-tiyasa.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Tiasha.png" alt="Tiyasa P">
+      </div>
+      <div class="profile-name">Tiyasa Paul</div>
+      <div class="profile-role">Asst. Manager - Client service</div>
+    </a>
+    <a href="profile-debarati.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Debarati.png" alt="Debarati C">
+      </div>
+      <div class="profile-name">Debarati Chatterjee</div>
+      <div class="profile-role">Asst. Manager - Client service</div>
+    </a>
+    <a href="profile-subhajit.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Subhajit.png" alt="Subhajit B">
+      </div>
+      <div class="profile-name">Subhajit Biswas</div>
+      <div class="profile-role">Asst. Manager - Client service</div>
+    </a>
+    <a href="profile-ritick.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Ritick.png" alt="Ritick S">
+      </div>
+      <div class="profile-name">Ritick Sham</div>
+      <div class="profile-role">Management Trainee</div>
+    </a>
+    <a href="profile-anikate.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Anikate.png" alt="Anikate D">
+      </div>
+      <div class="profile-name">Anikate Debnath</div>
+      <div class="profile-role">Management Trainee</div>
+    </a>
+    <a href="profile-urbi.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/urbi.png" alt="Urbi B">
+      </div>
+      <div class="profile-name">Urbi Bannerjee</div>
+      <div class="profile-role">Management Trainee</div>
+    </a>
+    <a href="profile-deblina.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Deblina.png" alt="Deblina">
+      </div>
+      <div class="profile-name">Deblina Banerjee</div>
+      <div class="profile-role">Management Trainee</div>
+    </a>
+    <a href="profile-chirag.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Subhajit.png" alt="Chirag G">
+      </div>
+      <div class="profile-name">Chirag Garg</div>
+      <div class="profile-role">Management Trainee</div>
+    </a>
+    <a href="profile-pradhumn.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Subhajit.png" alt="Pradhumn">
+      </div>
+      <div class="profile-name">Pradhumn Raghuvanshi</div>
+      <div class="profile-role">Management Trainee</div>
+    </a>
+    <a href="profile-komal.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Sunanda.png" alt="Komal G">
+      </div>
+      <div class="profile-name">Komal Goyal</div>
+      <div class="profile-role">Asst. Manager</div>
+    </a>
+    <a href="profile-avishek.html" class="profile-card" tabindex="0">
+      <div class="profile-img-wrap">
+        <img src="Images/Avishek.png" alt="Avishek A">
+      </div>
+      <div class="profile-name">Avishek Adhikari</div>
+      <div class="profile-role">Intern</div>
+    </a>
+  </div>
+</div>
+
+      
+  <!-- Font Awesome for LinkedIn icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script>
+    // Info for each profile
+    const profileDetails = {
+      soumyajit: {
+        text: "Soumyajit Ghosh is the Founder Director of Wealthapp Distributors Pvt Ltd. He brings in decades of Wealth Management experience and had the privilege to work for some of the most respected names in Banking and Financial Services. Soumyajit started his journey in 1996 as an Investment Banker and held key positions in SBI Funds Management, ANZ Grindlays/Standard Chartered Bank, ABN AMRO Bank and Citigroup. In 2014, he started his entrepreneurial journey by setting up Wealthapp Distributors, which today is one of the fastest growing Mutual Fund Distributors in India. He is also an integral part of India Sotheby's International Realty team. Soumyajit is a Science Graduate with a Masters in Finance. He is a Certified Financial Planner (CFP) and mentors a number of financial education institutions.",
+        linkedin: "https://www.linkedin.com/in/soumyajit-ghosh-1b642415/"
+      },
+      anindya: {
+        text: "Anindya Paulchaudhuri is the CEO of Wealthapp Distributors Pvt Ltd. He is a seasoned Banking and Wealth Management Professional with more than 25 years of experience. He was the Head of Retail & Wealth for the Eastern Indian region at Standard Chartered Bank and DBS Bank. Later on, he joined Bajaj Allianz Life Insurance as National Relationship Manager. Anindya has done Executive Management programme from IIM Kolkata and IIM Bangalore.",
+        linkedin: "https://www.linkedin.com/in/anindya-paulchaudhuri-b86379ba/"
+      },
+      neeladri: {
+        text: "Neeladri or Neel as he is called, Executive Director of Wealthapp Distributors Pvt Ltd is a financial services professional with more than thirty years’ experience across distribution, new business launch, operations, risk management, digital transformation, business process outsourcing and service delivery. He has extensive experience in Branch Banking, Commercial Banking, Wealth Management, Insurance Business and Fintech. He held senior positions at Royal Bank of Scotland (now NatWest), ABN Amro Bank, Max life insurance (founder team member), Grindlays Bank, Bank of America and Intellect design Arena. He is married with a daughter and is a keen wildlife and environment conservation enthusiast who has a love for the outdoors. He is a commerce graduate and a postgraduate from XLRI.",
+        linkedin: "https:˜//www.linkedin.com/in/neeladri-misra-22720a54/"
+      },
+      jaydeep: {
+        text: "Jaydeep Pratap, COO of Wealthapp Distributors Pvt. Ltd is a Fellow member of the Institute of Chartered Accountants of India (I.C.A.I) and is a seasoned Banker/Wealth Management professional. He has two decades of experience with International Banks viz ABN Amro, Royal Bank of Scotland, NatWest Bank and Indian giants like ICICI Bank. He was the Program Head for Van Gogh Preferred Banking for India in ABN/RBS and held various Regional level positions also. He has done a certificate course on Wealth Management from the University of Sydney.",
+        linkedin: "https://www.linkedin.com/in/jaydeeppratap/"
+      },
+      manpreet: {
+        text: "Manpreet Sandhu brings in 15 years of experience in Wealth Management. Before joining Wealthapp Distributors as Director, she was Head of Non-Resident Business for Southern India in Indusind Bank. She has worked with reputed organizations like ABN AMRO Bank, RBS and ICICI Bank.",
+        linkedin: "https://www.linkedin.com/in/manpreet-sandhu-8a26114/"
+      },
+      jayanta: {
+        text: "Jayanta Mukherjee - Vice President, Client Experience, brings more than 20 years of experience in retail financial services having worked in Kotak Mahindra, HDFC Bank, Tata AIG and SBI General Insurance. He is based out of Wealthapp Head Office in Kolkata.",
+        linkedin: "https://www.linkedin.com/in/jayanta-mukherjee-13b18974/"
+      },
+      ritunsha: {
+        text: "A Chartered Accountant and Certified Internal Auditor, Ritunsha Lalwani brings 8 years of experience from PwC, Capgemini, and McDermott to Wealthapp as Manager - Business Development. She has been a visiting faculty for the India Audit and Account Services, Kolkata.",
+        linkedin: "https://www.linkedin.com/in/ritunsha-lalwani/"
+      },
+      debankur: {
+        text: "Debankur Sengupta brings in 18 years of experience in the BSFI/WEALTH management space. He did his post graduation in management and is a Certified Financial Planner (CFP). Before joining Wealthapp Distributors as Director and Chief Business Officer – Global Business, he was the Regional Head of Exclusive Business in Indusind Bank. He has worked with reputed organizations like ABN AMRO Bank, RBS and Yes Bank.",
+        linkedin: "https://www.linkedin.com/in/debankur-sengupta-cfpcm-593a095/"
+      }
+    };
+    
+    const teamGrid = document.getElementById('teamGrid');
+    const overlayBg = document.getElementById('infoOverlayBg');
+    let currentBox = null;
+
+    
+    function removeInfoBox() {
+      document.querySelectorAll('.profile-card.selected').forEach(card => card.classList.remove('selected'));
+      document.querySelectorAll('.profile-info-box').forEach(box => box.remove());
+      overlayBg.classList.remove('active');
+      currentBox = null;
+    }
+
+    teamGrid.addEventListener('click', function(e) {
+      let card = e.target.closest('.profile-card');
+      if (!card) return;
+      removeInfoBox();
+      card.classList.add('selected');
+      const info = card.getAttribute('data-info');
+      const details = profileDetails[info];
+      if (!details) return;
+
+      // Create info box
+      const infoBox = document.createElement('div');
+      infoBox.className = 'profile-info-box';
+      infoBox.innerHTML = `
+  <p>${details.text}</p>
+  <a href="${details.linkedin}" target="_blank" class="linkedin-link" aria-label="LinkedIn">
+    <i class="fa fa-linkedin"></i>
+  </a>
+
+    
+`;
+
+      card.appendChild(infoBox);
+      // --- Edge detection and dynamic positioning ---
+setTimeout(() => {
+  const boxRect = infoBox.getBoundingClientRect();
+  const cardRect = card.getBoundingClientRect();
+  const spaceRight = window.innerWidth - cardRect.right;
+  const spaceLeft = cardRect.left;
+
+  // Default: show to the right
+  infoBox.style.left = '105%';
+  infoBox.style.right = 'auto';
+
+  // If not enough space on right, show to the left
+  if (spaceRight < boxRect.width && spaceLeft > boxRect.width) {
+    infoBox.style.left = 'auto';
+    infoBox.style.right = '105%';
+  }
+
+  // If still offscreen (very small screens), center as modal
+  if (boxRect.right > window.innerWidth || boxRect.left < 0) {
+    infoBox.style.position = 'fixed';
+    infoBox.style.left = '50%';
+    infoBox.style.right = 'auto';
+    infoBox.style.top = '12vh';
+    infoBox.style.transform = 'translateX(-50%)';
+    infoBox.style.zIndex = 1002;
+    infoBox.style.width = '92vw';
+    infoBox.style.maxWidth = '420px';
+  }
+}, 0);
+
+      currentBox = infoBox;
+
+      // Show overlay background on mobile
+      if (window.innerWidth < 900) overlayBg.classList.add('active');
+    });
+
+    // Dismiss info box when clicking outside or on overlay
+    overlayBg.addEventListener('click', removeInfoBox);
+    document.body.addEventListener('click', function(e) {
+      if (!e.target.closest('.profile-card')) removeInfoBox();
+    }, true);
+    // Prevent info box from closing when clicking inside
+    teamGrid.addEventListener('click', function(e) {
+      if (e.target.closest('.profile-info-box')) e.stopPropagation();
+    });
+    // Keyboard accessibility
+    teamGrid.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') removeInfoBox();
+    });
+  </script>
+  
+</body>
+</html>

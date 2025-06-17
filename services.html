@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WealthApp Services - Comprehensive Financial Solutions</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #f7f7f7;
+      color: #14225a;
+      line-height: 1.6;
+    }
+    /* Navbar CSS (from your existing code) */
+    .sticky-header {
+      width: 100%;
+      background: #0a1756;
+      display: flex;
+      align-items: center;
+      padding: 0;
+      position: relative;
+      z-index: 1001;
+      box-shadow: none;
+      transition: box-shadow 0.22s, padding 0.22s, background 0.22s;
+      min-height: 90px;
+    }
+    .sticky-header.scrolled {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #0a1756;
+      box-shadow: 0 2px 12px rgba(20,34,90,0.08);
+      min-height: 54px;
+    }
+    .logo-img {
+      height: 110px;
+      max-width: 260px;
+      width: auto;
+      margin-left: 36px;
+      margin-right: 18px;
+      margin-top: 0;
+      margin-bottom: 0;
+      background: transparent;
+      box-shadow: 0 4px 16px rgba(20,34,90,0.08);
+      transition: height 0.3s cubic-bezier(.4,2,.6,1), margin 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    .sticky-header.scrolled .logo-img {
+      height: 54px;
+      margin-left: 12px;
+      margin-right: 12px;
+      box-shadow: 0 1px 4px rgba(20,34,90,0.10);
+    }
+    .navbar {
+      flex: 1;
+      background: transparent;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+    }
+    .navbar-menu {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 18px;
+      justify-content: center;
+      width: 100%;
+    }
+    .navbar-menu li {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-menu a {
+      display: block;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.15rem;
+      text-decoration: none;
+      padding: 10px 10px;
+      border-radius: 3px;
+      font-weight: 400;
+      transition: color 0.2s, background 0.2s;
+      position: relative;
+    }
+    .navbar-menu a .arrow {
+      font-size: 0.8em;
+      margin-left: 3px;
+    }
+    .navbar-menu a:hover,
+    .navbar-menu a:focus {
+      color: #b7ba4b;
+      font-weight: 600;
+    }
+    /* Dropdown styles */
+    .navbar-menu .dropdown {
+      position: relative;
+    }
+    .navbar-menu .dropdown-menu {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      background: #0a1756;
+      min-width: 250px;
+      border-radius: 0 0 12px 12px;
+      padding: 14px 0 14px 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+      z-index: 100;
+      border: 3px solid #7b5be6;
+      border-top: none;
+    }
+    .navbar-menu .dropdown:hover > .dropdown-menu,
+    .navbar-menu .dropdown:focus-within > .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu a {
+      display: block;
+      color: #fff;
+      padding: 7px 28px 7px 18px;
+      font-size: 1.08rem;
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s, background 0.2s;
+      border-radius: 0;
+      white-space: nowrap;
+    }
+    .dropdown-menu a:hover,
+    .dropdown-menu a:focus {
+      color: #b7ba4b;
+      font-weight: 600;
+      background: none;
+    }
+    .navbar-menu .dropdown:hover > a,
+    .navbar-menu .dropdown:focus-within > a {
+      color: #b7ba4b;
+      font-weight: 600;
+    }
+    /* Hero Section */
+    .services-hero {
+      background: linear-gradient(135deg, #14225a 0%, #2186d4 100%);
+      color: #fff;
+      text-align: center;
+      padding: 120px 20px 80px 20px;
+      margin-top: 0;
+    }
+    .services-hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .services-hero p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.95;
+    }
+    /* Services Navigation */
+    .services-nav {
+      background: #fff;
+      padding: 30px 0;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(20,34,90,0.08);
+      position: sticky;
+      top: 54px;
+      z-index: 500;
+    }
+    .services-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .services-nav-list a {
+      color: #14225a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 12px 24px;
+      border-radius: 25px;
+      border: 2px solid #b7ba4b;
+      transition: all 0.3s;
+    }
+    .services-nav-list a:hover,
+    .services-nav-list a.active {
+      background: #b7ba4b;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(183,186,75,0.3);
+    }
+    /* Service Section */
+    .service-section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .service-section:nth-child(even) {
+      background: #fff;
+    }
+    /* Header with background image */
+    .service-section h2 {
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 40px;
+      text-align: center;
+      font-weight: 700;
+      position: relative;
+      padding: 80px 20px;
+      border-radius: 16px;
+      margin-top: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(20,34,90,0.12);
+    }
+    .service-section h2::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(20, 34, 90, 0.7);
+      z-index: 1;
+      border-radius: 16px;
+    }
+    .service-section h2::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #b7ba4b 0%, #2186d4 100%);
+      display: block;
+      margin: 20px auto;
+      border-radius: 2px;
+      position: relative;
+      z-index: 2;
+    }
+    .service-section h2 span {
+      position: relative;
+      z-index: 2;
+    }
+    /* Blur effect on background image */
+    .service-section h2::after {
+      z-index: 2;
+    }
+    /* Content styling */
+    .service-content {
+      background: #fff;
+      border-radius: 20px;
+      padding: 50px;
+      box-shadow: 0 8px 32px rgba(20,34,90,0.08);
+      border: 2px solid #f7f7f7;
+      transition: all 0.3s;
+    }
+    .service-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(20,34,90,0.12);
+      border-color: #b7ba4b;
+    }
+    .service-content h3 {
+      font-size: 1.6rem;
+      color: #2186d4;
+      margin-bottom: 20px;
+      font-weight: 6;
+    }
+    .service-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .service-benefits {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 15px;
+      padding: 30px;
+      margin: 30px 0;
+    }
+    .service-benefits h4 {
+      color: #14225a;
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      font-weight: 6;
+    }
+    .service-benefits ul {
+      list-style: none;
+      padding: 0;
+    }
+    .service-benefits li {
+      padding: 8px 0;
+      position: relative;
+      padding-left: 25px;
+    }
+    .service-benefits li:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #b7ba4b;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    /* Call to Action */
+    .service-cta {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #b7ba4b 0%, #2186d4 100%);
+      color: #fff;
+      text-decoration: none;
+      padding: 15px 35px;
+      border-radius: 30px;
+      font-weight: 6;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(183,186,75,0.3);
+    }
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(183,186,75,0.4);
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .services-hero h1 {
+        font-size: 2.2rem;
+      }
+      .services-hero p {
+        font-size: 1.1rem;
+      }
+      .services-nav-list {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .service-content {
+        padding: 30px 25px;
+      }
+      .service-section {
+        padding: 50px 15px;
+      }
+      .service-section h2 {
+        padding: 60px 20px;
+        font-size: 2rem;
+      }
+      .navbar-menu {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+    @media (max-width: 1100px) {
+      .navbar-menu {
+        gap: 10px;
+      }
+      .navbar-menu a {
+        font-size: 1rem;
+        padding: 8px 8px;
+      }
+    }
+    @media (max-width: 700px) {
+      .logo-img {
+        height: 70px;
+        margin-left: 12px;
+        margin-top: -30px;
+      }
+      .sticky-header.scrolled .logo-img {
+        height: 38px;
+        margin-left: 6px;
+        margin-top: 2px;
+      }
+    }
+    /* For blur effect on background images */
+    .service-section h2 {
+      backdrop-filter: blur(2px);
+    }
+  </style>
+</head>
+<header class="sticky-header" id="stickyHeader">
+  <img src="Images/logo2.jpeg" alt="WealthApp Logo" class="logo-img" id="mainLogo">
+  <nav class="navbar">
+    <ul class="navbar-menu">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="">About <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="aboutustester.html">Our Company</a></li>
+          <li><a href="#">Brochure</a></li>
+          <li><a href="testimonials.html">Client Testimonials</a></li>
+          <li class="submenu-parent">
+            <a href="#">Gallery</a>
+            <ul class="submenu">
+              <li><a href="#">Awards</a></li>
+              <li><a href="#">Team Pics</a></li>
+              <li><a href="#">Certificates</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="services.html">Services <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="services.html">Wealth Management</a></li>
+          <li><a href="services.html">Estate and Trust Planning</a></li>
+          <li><a href="services.html">Dedicated NRI Cell</a></li>
+          <li><a href="services.html">Portfolio Management Services</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="products.html">Products <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="products.html">Mutual Funds</a></li>
+          <li><a href="products.html">Bonds</a></li>
+          <li><a href="products.html">Real Estate</a></li>
+          <li><a href="products.html">Alternative Investment Funds</a></li>
+          <li><a href="products.html">Structured Products</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Holiday Adda</a></li>
+      <li class="dropdown">
+        <a href="#">Investor Zone <span class="arrow">&#x25BC;</span></a>
+        <ul class="dropdown-menu">
+          <li class="submenu-parent">
+            <a href="#">Tools</a>
+            <ul class="submenu">
+              <li><a href="https://wealthappdistributors.com/schemePerformance.php">Mutual Fund Performance</a></li>
+              <li><a href="https://wealthappdistributors.com/pastSipPerformance.php">Past SIP Performance</a></li>
+              <li><a href="https://wealthappdistributors.com/fundComparison.php">Fund Comparison</a></li>
+              <li><a href="https://wealthappdistributors.com/dividendAnnounced.php">Dividend Announced</a></li>
+              <li><a href="https://wealthappdistributors.com/downloadMFform.php">Download MF Forms</a></li>
+            </ul>
+          </li>
+          <li><a href="#">KYC</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Login</a></li>
+      <li><a href="contactus.html">Contact</a></li>
+    </ul>
+  </nav>
+    </ul>
+</header>
+
+  <!-- Hero Section -->
+  <section class="services-hero">
+    <h1>Our Services</h1>
+    <p>Comprehensive financial solutions tailored to meet your unique needs and help you achieve your wealth management goals with confidence and expertise.</p>
+  </section>
+
+  <!-- Services Navigation -->
+  <nav class="services-nav">
+    <ul class="services-nav-list">
+      <li><a href="#wealth-management">Wealth Management</a></li>
+      <li><a href="#estate-planning">Estate Planning</a></li>
+      <li><a href="#nri-services">NRI Services</a></li>
+      <li><a href="#tax-planning">Tax Planning</a></li>
+      <li><a href="#portfolio-management">Portfolio Management</a></li>
+    </ul>
+  </nav>
+
+  <!-- Wealth Management Section -->
+  <section id="wealth-management" class="service-section">
+    <h2 style="background-image: url('Images/wm.jpg')"><span>Wealth Management</span></h2>
+    <div class="service-content">
+      <h3>Comprehensive Investment & Wealth Planning</h3>
+      <p>Properly managing your investments is critical to working toward your financial goals but that's not enough. You need a plan that guides your investment decisions. But even having a plan is not enough. You need to take action. And because your life is always changing, your plans and actions need to adapt to changes.</p>
+      <p>As your wealth grows or when you face certain financial situations such as retirement, reducing debt, determining the types of insurance needed, or buying or selling a business, the planning process can be complicated and time-consuming. That's where we shine.</p>
+      <div class="service-benefits">
+        <h4>Our Wealth Management Approach:</h4>
+        <ul>
+          <li>Understanding your objectives, goals and priorities</li>
+          <li>Developing solid financial plans that support those goals with specific actions</li>
+          <li>Identifying your savings and investing needs</li>
+          <li>Managing risk and providing insights</li>
+          <li>Maintaining ongoing contact and reassessing your plan as your life changes</li>
+          <li>Enabling you to devote more time to your personal endeavors, business and family</li>
+        </ul>
+      </div>
+      <p>This is our wealth management service where we combine investment management with comprehensive and proactive analysis, planning, and monitoring of your financial goals and ever-changing situation.</p>
+      <div class="service-cta">
+        <a href="#contact" class="cta-button">Start Your Wealth Journey</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Estate Planning Section -->
+  <section id="estate-planning" class="service-section">
+    <h2 style="background-image: url('Images/em.jpg')"><span>Estate and Trust Planning</span></h2>
+    <div class="service-content">
+      <h3>Building Bridges Between Generations</h3>
+      <p>Estate planning refers to the process of building a bridge from one generation to the next one by passing on your assets during or after your lifetime. Simply put, Estate planning involves making plans for the transfer of your estate to your legal heirs in the event of death or disability.</p>
+      <p>Estate is all the property that you own. It can include cash, property, income from property, deposits, jewellery, retirement proceeds, investment and savings accounts etc. Estate planning is essential for all, regardless of one's economic standing.</p>
+      <div class="service-benefits">
+        <h4>Why Estate Planning is Important:</h4>
+        <ul>
+          <li>Ensures your family financial needs are met after your lifetime</li>
+          <li>Avoids confusion, uncertainty, legal difficulties, financial losses and disappointed beneficiaries</li>
+          <li>Dispels potential conflicts between the beneficiaries over the inheritance</li>
+          <li>You get to name the people to whom you wish to give your assets</li>
+          <li>Tax effectiveness ensuring least tax deduction on such transfer</li>
+          <li>Time of distribution can be pre-decided</li>
+          <li>Selection of a trustee, guardian or an executor</li>
+        </ul>
+      </div>
+      <p><strong>Estate Planning Vehicles:</strong> Trust, Will, Power of Attorney (POA), Gift</p>
+      <div class="service-cta">
+        <a href="#contact" class="cta-button">Plan Your Estate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NRI Services Section -->
+  <section id="nri-services" class="service-section">
+    <h2 style="background-image: url('https://www.techforgood.net/wp-content/uploads/2025/02/Global-Financial-Inclusion-1-1024x683.jpg')"><span>Dedicated NRI Cell</span></h2>
+    <div class="service-content">
+      <h3>Specialised Investment Services for Non-Resident Indians</h3>
+      <p>Portfolio investments in shares/debentures by NRIs/OCBs (Overseas Corporate Bodies) are permitted only through designated branches of authorized dealers, preferably located at centres having stock exchanges.</p>
+      <div class="service-benefits">
+        <h4>Investment Options for NRIs:</h4>
+        <ul>
+          <li>Portfolio investment in shares/debentures of Indian companies</li>
+          <li>Investment with repatriation or non-repatriation rights</li>
+          <li>Investment through stock exchanges via designated branches</li>
+          <li>Overall ceiling of 10% of total paid-up equity capital</li>
+          <li>Purchase at ruling market prices</li>
+          <li>Investment in government securities and Treasury Bills</li>
+        </ul>
+      </div>
+      <h3>General Conditions:</h3>
+      <p>NRIs/OCBs will be permitted to make portfolio investment in shares/debentures (convertible and non-convertible) of Indian companies, with or without repatriation benefits provided the purchase is made through a stock exchange and also through designated branch of an authorized dealer.</p>
+      <p><strong>Investment Limits:</strong> Investment in equity shares and convertible debentures will be permitted subject to an overall ceiling of 10% of the total paid-up equity capital of the company concerned and 10% of the total paid-up value of each series of convertible debentures.</p>
+      <div class="service-cta">
+        <a href="#contact" class="cta-button">Explore NRI Investments</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tax Planning Section -->
+  <section id="tax-planning" class="service-section">
+    <h2 style="background-image: url('https://worldfinancialreview.com/wp-content/uploads/2022/01/https___specials-images.forbesimg.com_imageserve_5fd7a9ad229dea190693f14d_Advisors-help-in-filling-1040-form-teamwork-in-office_960x0.jpg')"><span>Tax Planning</span></h2>
+    <div class="service-content">
+      <h3>Optimise Your Tax Efficiency</h3>
+      <p>We all know that it is not how much income we earn that matters, but how much income we retain after taxes – that actually make all the difference. Taxes, if not planned properly, will take away a large portion of your earnings and consequently, your investible surplus.</p>
+      <div class="service-benefits">
+        <h4>Benefits of Efficient Tax Planning:</h4>
+        <ul>
+          <li>Improve your savings and investment returns</li>
+          <li>Minimise tax impact in a legitimate way</li>
+          <li>Increase your investible surplus</li>
+          <li>Optimise long-term wealth creation</li>
+          <li>Access to expert tax-saving ideas and instruments</li>
+        </ul>
+      </div>
+      <h3>Our Tax Planning Approach:</h3>
+      <p>WealthApp offers you prudent advice on how to efficiently optimise your taxes. We will suggest relevant tax-saving ideas and instrument options that will effectively address the four important issues regarding tax-planning:</p>
+      <div class="service-benefits">
+        <h4>Key Tax Considerations We Address:</h4>
+        <ul>
+          <li>Is there any tax benefit on the amount invested?</li>
+          <li>Is there any tax benefit on the income received from such investments?</li>
+          <li>Is the principal investment received on maturity taxable?</li>
+          <li>What is the rate of tax on the income received?</li>
+        </ul>
+      </div>
+      <div class="service-cta">
+        <a href="#contact" class="cta-button">Optimize Your Taxes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Management Section -->
+  <section id="portfolio-management" class="service-section">
+    <h2 style="background-image: url('https://finvoyage.in/wp-content/uploads/2024/01/portfolio-management-services.jpg')"><span>Portfolio Management Services</span></h2>
+    <div class="service-content">
+      <h3>Professional Investment Management</h3>
+      <p>We offer investment management and advisory services to individuals who not only understand the long-term potential of equities as an asset class, but also understand the associated risks. We also have access to a number of Third Party PMS by various Fund Houses and NBFCs with research desk that actively researches and tracks their performance.</p>
+      <div class="service-benefits">
+        <h4>Our Portfolio Management Features:</h4>
+        <ul>
+          <li>Professional management of equity portfolios and Mutual Funds</li>
+          <li>Objective of delivering consistent long-term performance while controlling risk</li>
+          <li>Constant monitoring and periodic optimization</li>
+          <li>Dedicated research team establishing investment strategy</li>
+          <li>Real-time information and market insights</li>
+          <li>Comprehensive client servicing and customization</li>
+          <li>Monthly reporting on portfolio status and performance</li>
+          <li>Web-enabled access to all investment information</li>
+        </ul>
+      </div>
+      <h3>Why Choose Our PMS:</h3>
+      <p>The service provides professional management of equity portfolios and Mutual Funds with the objective of delivering consistent long-term performance while controlling risk. We recognize that portfolios need to be constantly monitored and periodic changes made to optimize the results.</p>
+      <p><strong>Research & Communication:</strong> A research team is responsible for establishing our investment strategy and providing us real time information to support it. There is an active communication by means of regular statements and updates. Web-enabled access will ensure that you are just a click away from all information relating to your investment.</p>
+      <div class="service-cta">
+        <a href="#contact" class="cta-button">Start Portfolio Management</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Sticky header on scroll
+    window.addEventListener('scroll', function() {
+      var stickyHeader = document.getElementById('stickyHeader');
+      if (window.scrollY > 60) {
+        stickyHeader.classList.add('scrolled');
+      } else {
+        stickyHeader.classList.remove('scrolled');
+      }
+    });
+    // Smooth scrolling for service navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerOffset = 120;
+          const elementPosition = target.offsetTop;
+          const offsetPosition = elementPosition - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    // Update active navigation based on scroll position
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('.service-section');
+      const navLinks = document.querySelectorAll('.services-nav-list a');
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
